@@ -57,10 +57,11 @@ const getJobListingController = {
         })
       } else {
         res?.status(500)?.json({
-          errorMessage: "Some error occured!"
+          errorMessage: "No job listings found!"
         })
       }
     } catch (err: any) {
+      console.log(err, "error");
       res?.status(500)?.json({
         errorMessage: err?.message || "Some error occured!"
       });

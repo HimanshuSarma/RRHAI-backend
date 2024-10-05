@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://thriving-jalebi-92822e.netlify.app"]
+  origin: ["https://thriving-jalebi-92822e.netlify.app", "http://localhost:5173"]
 }))
 app.use(express.json());
 

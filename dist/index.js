@@ -34,7 +34,7 @@ const routes_1 = __importDefault(require("./routes"));
 dotenv.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: ["https://thriving-jalebi-92822e.netlify.app"]
+    origin: ["https://thriving-jalebi-92822e.netlify.app", "http://localhost:5173"]
 }));
 app.use(express_1.default.json());
 app.listen(Number(process.env.PORT), '0.0.0.0', () => {
