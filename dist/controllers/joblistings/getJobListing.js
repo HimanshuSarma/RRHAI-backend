@@ -37,6 +37,9 @@ const getJobListingController = {
             if (req?.query?.name) {
                 filters.push({ title: { $regex: req?.query?.name } });
             }
+            else {
+                filters.push({ title: { $regex: "" } });
+            }
             const fetchedJobListing = await global?.DBModels?.JOB_LISTING.aggregate([{
                     $match: {
                         $or: filters
