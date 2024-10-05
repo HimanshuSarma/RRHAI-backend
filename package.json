@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run-db": "docker-compose -f docker-compose.yml up -d",
+    "build": "tsc",
     "dev": "concurrently  --kill others \"npm run run-db\" \"tsc -w\" \"wait-on tcp:27017 && nodemon dist/index.js\"",
     "start": "node dist/index.js"
   },
