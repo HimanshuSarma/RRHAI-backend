@@ -26,12 +26,24 @@ const getJobListingController = {
   },
   handler: async (req: Request<any, any, null, IGetJobListingRequestQueryParams>, res: Response, next: NextFunction) => {
     try {
+
+      const filters = [];
+
+      if (req?.query?._id) {
+        filters?.push(
+          { _id: new mongoose.Types.ObjectId(req?.query?._id?.toString()) }
+        )
+      }
+
+      if (req?.query?.name) {
+        filters.push(
+          { title: { $regex: req?.query?.name } }
+        )
+      }
+
       const fetchedJobListing = await global?.DBModels?.JOB_LISTING.aggregate([{
         $match: {
-          $or: [
-            { _id: new mongoose.Types.ObjectId(req?.query?._id?.toString()) },
-            { title: { $regex: req?.query?.name || "" } }
-          ]
+          $or: filters
         }
       }]);
       if (fetchedJobListing?.length > 0) {

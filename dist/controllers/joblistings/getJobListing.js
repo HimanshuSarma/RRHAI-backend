@@ -30,12 +30,16 @@ const getJobListingController = {
     },
     handler: async (req, res, next) => {
         try {
+            const filters = [];
+            if (req?.query?._id) {
+                filters?.push({ _id: new mongoose_1.default.Types.ObjectId(req?.query?._id?.toString()) });
+            }
+            if (req?.query?.name) {
+                filters.push({ title: { $regex: req?.query?.name } });
+            }
             const fetchedJobListing = await global?.DBModels?.JOB_LISTING.aggregate([{
                     $match: {
-                        $or: [
-                            { _id: new mongoose_1.default.Types.ObjectId(req?.query?._id?.toString()) },
-                            { title: { $regex: req?.query?.name || "" } }
-                        ]
+                        $or: filters
                     }
                 }]);
             if (fetchedJobListing?.length > 0) {
