@@ -13,8 +13,8 @@ app.use(cors({
 }))
 app.use(express.json());
 
-app.listen(8000, '0.0.0.0', () => {
-  console.log("Server running at port 8000");
+app.listen(Number(process.env.PORT), '0.0.0.0', () => {
+  console.log("Server running at port " + Number(process.env.PORT));
   createConnectionHandler();
   app.use("/", indexRouter)
 });

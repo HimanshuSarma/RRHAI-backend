@@ -37,8 +37,8 @@ app.use((0, cors_1.default)({
     origin: ["http://localhost:5173"]
 }));
 app.use(express_1.default.json());
-app.listen(8000, '0.0.0.0', () => {
-    console.log("Server running at port 8000");
+app.listen(Number(process.env.PORT), '0.0.0.0', () => {
+    console.log("Server running at port " + Number(process.env.PORT));
     (0, connectionHandler_1.default)();
     app.use("/", routes_1.default);
 });
