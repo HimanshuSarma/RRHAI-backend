@@ -34,7 +34,7 @@ const getJobListingController = {
                     $match: {
                         $or: [
                             { _id: new mongoose_1.default.Types.ObjectId(req?.query?._id?.toString()) },
-                            { title: { $regex: req?.query?.name } }
+                            { title: { $regex: req?.query?.name || "" } }
                         ]
                     }
                 }]);
